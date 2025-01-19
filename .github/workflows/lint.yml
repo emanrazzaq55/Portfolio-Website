@@ -1,0 +1,25 @@
+name: Linting
+
+on:
+  pull_request:
+    branches:
+      - develop  # Trigger on PRs to the 'develop' branch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linting
+        run: npm run lint  # Make sure you have a lint script in package.json
